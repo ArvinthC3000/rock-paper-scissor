@@ -7,9 +7,24 @@ const App = () => {
   const [computerSelection, setComputerSelection] = useState([]);
   const [status, setStatus] = useState(null);
   const options = [
-    { component: <FaHandRock />, key: 'A', keyCode: 65, name: 'Rock' },
-    { component: <FaHandPaper />, key: 'S', keyCode: 83, name: 'Paper' },
-    { component: <FaHandScissors />, key: 'D', keyCode: 68, name: 'Scissors' },
+    {
+      component: <FaHandRock />,
+      key: 'A',
+      keyCode: 65,
+      name: 'Rock',
+    },
+    {
+      component: <FaHandPaper />,
+      key: 'S',
+      keyCode: 83,
+      name: 'Paper',
+    },
+    {
+      component: <FaHandScissors />,
+      key: 'D',
+      keyCode: 68,
+      name: 'Scissors',
+    },
   ];
 
   useEffect(() => {
@@ -65,15 +80,17 @@ const App = () => {
         Computer selection: {computerSelection.component}
       </div>
       <div className='selection'>{status}</div>
-      {options.map(option => (
-        <button
-          key={option.key}
-          title={`Press '${option.key}'`}
-          value={option}
-          onClick={() => handleClick(option)}>
-          {option.name} ({option.component})
-        </button>
-      ))}
+      <div className='buttonContainer'>
+        {options.map(option => (
+          <button
+            key={option.key}
+            title={`Press '${option.key}'`}
+            value={option}
+            onClick={() => handleClick(option)}>
+            {option.name} ({option.component})
+          </button>
+        ))}
+      </div>
     </>
   );
 };
