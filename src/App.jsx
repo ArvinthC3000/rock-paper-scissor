@@ -8,19 +8,19 @@ const App = () => {
   const [status, setStatus] = useState(null);
   const options = [
     {
-      component: <FaHandRock />,
+      component: <FaHandRock style={iconStyle} />,
       key: 'A',
       keyCode: 65,
       name: 'Rock',
     },
     {
-      component: <FaHandPaper />,
+      component: <FaHandPaper style={iconStyle} />,
       key: 'S',
       keyCode: 83,
       name: 'Paper',
     },
     {
-      component: <FaHandScissors />,
+      component: <FaHandScissors style={iconStyle} />,
       key: 'D',
       keyCode: 68,
       name: 'Scissors',
@@ -74,25 +74,51 @@ const App = () => {
     setComputerSelection(computerSelection);
   };
   return (
-    <>
-      <div className='selection'>Your selection: {userSelection.component}</div>
-      <div className='selection'>
-        Computer selection: {computerSelection.component}
+    <div className='wrapper'>
+      <div className='appContainer'>
+        <div className='selectionWrapper'>
+          <div className='selection'>
+            <div className='selectionHeader'>Player selection</div>
+            <div className='componentContainer'>{userSelection.component}</div>
+          </div>
+          <div className='selection'>
+            <div className='selectionHeader'>Computer selection</div>
+            <div className='componentContainer'>
+              {computerSelection.component}
+            </div>
+          </div>
+        </div>
+        <div className='statusContainer'>
+          {status || (
+            <>
+              <div>Start game by clicking on any of the following buttons.</div>
+              <div>(or)</div>
+              <div>Use hard keys</div>
+            </>
+          )}
+        </div>
+        <div className='buttonWrapper'>
+          <div className='buttonContainer'>
+            {options.map(option => (
+              <button
+                key={option.key}
+                title={`Press '${option.key}'`}
+                value={option}
+                onClick={() => handleClick(option)}>
+                <span>{option.name}</span>
+                <span className='sub'>Press '{option.key}'</span>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
-      <div className='selection'>{status}</div>
-      <div className='buttonContainer'>
-        {options.map(option => (
-          <button
-            key={option.key}
-            title={`Press '${option.key}'`}
-            value={option}
-            onClick={() => handleClick(option)}>
-            {option.name} ({option.component})
-          </button>
-        ))}
-      </div>
-    </>
+    </div>
   );
+};
+
+const iconStyle = {
+  height: '5rem',
+  width: '5rem',
 };
 
 export default App;

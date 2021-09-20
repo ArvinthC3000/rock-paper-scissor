@@ -1,3 +1,7 @@
+.wrapper {
+  background: #282c34;
+}
+
 button {
   /* background-color: #66fb61; */
 
@@ -11,6 +15,8 @@ button {
   display: inline-block;
   font-size: 16px;
   margin: 1rem 0.5rem;
+  min-width: 10rem;
+  padding: 1rem 2rem;
 }
 
 button:hover {
@@ -18,7 +24,68 @@ button:hover {
   background-color: #c5c2c2;
 }
 
-.buttonContainer {
-  width: 25rem;
+.buttonWrapper {
   display: flex;
+  justify-content: center;
+}
+
+.buttonContainer {
+  display: flex;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.appContainer {
+  height: 60vh;
+  width: 50vw;
+  /* background-color: aqua; */
+}
+
+.selectionWrapper {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+}
+
+.selection {
+  /* background-color: azure; */
+  height: 10rem;
+  width: 10rem;
+}
+
+.selectionHeader {
+  text-align: center;
+  /* background-color: #c5c2c2; */
+  color: #c5c2c2;
+}
+
+.componentContainer {
+  height: 83%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #3d3d3d;
+  border-radius: 2rem;
+  background-color: #c5c2c2;
+}
+
+button > span {
+  display: block;
+  font-size: 1.4rem;
+}
+
+span.sub {
+  font-size: 0.6rem;
+}
+
+.statusContainer {
+  text-align: center;
+  height: 4rem;
+  color: #c5c2c2;
 }
