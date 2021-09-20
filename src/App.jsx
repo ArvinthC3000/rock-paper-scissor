@@ -91,9 +91,8 @@ const App = () => {
         <div className='statusContainer'>
           {status || (
             <>
-              <div>Start game by clicking on any of the following buttons.</div>
-              <div>(or)</div>
-              <div>Use hard keys</div>
+              <div>Start game by clicking one of the following selection.</div>
+              <div>(or) Use assigned hard keys </div>
             </>
           )}
         </div>
