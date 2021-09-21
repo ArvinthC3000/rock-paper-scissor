@@ -25,9 +25,16 @@ button:hover {
   background-color: #c5c2c2;
 }
 
-.buttonWrapper {
+.buttonWrapper,
+.resetContainer {
   display: flex;
   justify-content: center;
+}
+
+.resetContainer > button {
+  color: white;
+  background-color: #1f212e;
+  border: 2px solid white;
 }
 
 .buttonContainer {

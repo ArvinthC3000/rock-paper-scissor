@@ -7,6 +7,7 @@ const App = () => {
   const [computerSelection, setComputerSelection] = useState([]);
   const [status, setStatus] = useState(null);
   const [gameOver, setGameOver] = useState(false);
+  const [showGameReset, setShowGameReset] = useState(false);
   const options = [
     {
       component: <FaHandRock style={iconStyle} />,
@@ -68,7 +69,10 @@ const App = () => {
   }, [userSelection, computerSelection]);
 
   useEffect(() => {
-    if (computerScore === maxScore || userScore === maxScore) setGameOver(true);
+    if (computerScore === maxScore || userScore === maxScore) {
+      setGameOver(true);
+      setShowGameReset(true);
+    }
     if (computerScore >= maxScore) setStatus('You lost!');
     if (userScore >= maxScore) setStatus('You Won!');
   }, [computerScore, userScore]);
@@ -91,6 +95,17 @@ const App = () => {
       options[Math.floor(Math.random() * options.length)];
     setComputerSelection(computerSelection);
   };
+
+  const gameReset = () => {
+    setGameOver(0);
+    setComputerScore([]);
+    setuserSelection([]);
+    setStatus(null);
+    setComputerScore(0);
+    setUserScore(0);
+    setShowGameReset(false);
+  };
+
   return (
     <div className='wrapper'>
       <div className='appContainer'>
@@ -138,6 +153,11 @@ const App = () => {
             ))}
           </div>
         </div>
+        {showGameReset && (
+          <div className='resetContainer'>
+            <button onClick={gameReset}>Reset</button>
+          </div>
+        )}
       </div>
     </div>
   );
