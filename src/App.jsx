@@ -39,6 +39,7 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /* Game logic */
   useEffect(() => {
     if (gameOver) return;
     switch (userSelection.name + computerSelection.name) {
@@ -63,7 +64,6 @@ const App = () => {
         setStatus('');
         break;
     }
-    // ...
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelection, computerSelection]);
@@ -83,6 +83,7 @@ const App = () => {
     setuserSelection(option);
   };
 
+  /* Handle key selecetion (calls handle button click) */
   const handleKeyDown = e => {
     if (gameOver) return;
     const option = options.filter(option => option.keyCode === e.keyCode);
@@ -90,12 +91,14 @@ const App = () => {
     handleClick(option[0]);
   };
 
+  /* Random computer selection */
   const generateComputerSelection = () => {
     const computerSelection =
       options[Math.floor(Math.random() * options.length)];
     setComputerSelection(computerSelection);
   };
 
+  /* Reset game */
   const gameReset = () => {
     setGameOver(0);
     setComputerScore([]);
