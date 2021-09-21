@@ -6,6 +6,7 @@ const App = () => {
   const [userSelection, setuserSelection] = useState([]);
   const [computerSelection, setComputerSelection] = useState([]);
   const [status, setStatus] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
   const options = [
     {
       component: <FaHandRock style={iconStyle} />,
@@ -30,6 +31,12 @@ const App = () => {
   const [userScore, setUserScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const maxScore = 10;
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     switch (userSelection.name + computerSelection.name) {
@@ -62,13 +69,8 @@ const App = () => {
   useEffect(() => {
     if (computerScore === maxScore) setStatus('You lost!');
     if (userScore === maxScore) setStatus('You Won!');
+    if (computerScore === maxScore || userScore === maxScore) setGameOver(true);
   }, [computerScore, userScore]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleClick = option => {
     generateComputerSelection();

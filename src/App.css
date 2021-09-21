@@ -1,5 +1,5 @@
 .wrapper {
-  background: #282c34;
+  background: #1f212e;
 }
 
 button {
@@ -75,7 +75,7 @@ button:hover {
   justify-content: center;
   /* border: 1px solid #3d3d3d; */
   border-radius: 0.5rem 0.5rem 0 0;
-  background-color: #c5c2c2;
+  background-color: #f0f0f0;
 }
 
 button > span {
@@ -90,7 +90,7 @@ span.sub {
 .statusContainer {
   text-align: center;
   height: 4rem;
-  color: #c5c2c2;
+  color: #ffffff;
 }
 
 .progressContainer {
