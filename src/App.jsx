@@ -27,17 +27,23 @@ const App = () => {
     },
   ];
 
+  const [userScore, setUserScore] = useState(0);
+  const [computerScore, setComputerScore] = useState(0);
+  const maxScore = 10;
+
   useEffect(() => {
     switch (userSelection.name + computerSelection.name) {
       case 'PaperRock':
       case 'RockScissors':
       case 'ScissorsPaper':
         setStatus('Point for you');
+        setUserScore(userScore + 1);
         break;
       case 'RockPaper':
       case 'ScissorsRock':
       case 'PaperScissors':
         setStatus('Point for the computer');
+        setComputerScore(computerScore + 1);
         break;
       case 'RockRock':
       case 'ScissorsScissors':
@@ -49,7 +55,14 @@ const App = () => {
         break;
     }
     // ...
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelection, computerSelection]);
+
+  useEffect(() => {
+    if (computerScore === maxScore) setStatus('You lost!');
+    if (userScore === maxScore) setStatus('You Won!');
+  }, [computerScore, userScore]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
@@ -80,11 +93,21 @@ const App = () => {
           <div className='selection'>
             <div className='selectionHeader'>Player selection</div>
             <div className='componentContainer'>{userSelection.component}</div>
+            <div className='progressContainer'>
+              <div
+                className='userProgress'
+                style={{ width: `${(userScore / maxScore) * 100}%` }}></div>
+            </div>
           </div>
           <div className='selection'>
             <div className='selectionHeader'>Computer selection</div>
             <div className='componentContainer'>
               {computerSelection.component}
+            </div>
+            <div className='progressContainer'>
+              <div
+                className='computerProgress'
+                style={{ width: `${(computerScore / maxScore) * 100}%` }}></div>
             </div>
           </div>
         </div>
