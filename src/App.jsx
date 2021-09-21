@@ -39,6 +39,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    if (gameOver) return;
     switch (userSelection.name + computerSelection.name) {
       case 'PaperRock':
       case 'RockScissors':
@@ -67,17 +68,19 @@ const App = () => {
   }, [userSelection, computerSelection]);
 
   useEffect(() => {
-    if (computerScore === maxScore) setStatus('You lost!');
-    if (userScore === maxScore) setStatus('You Won!');
     if (computerScore === maxScore || userScore === maxScore) setGameOver(true);
+    if (computerScore >= maxScore) setStatus('You lost!');
+    if (userScore >= maxScore) setStatus('You Won!');
   }, [computerScore, userScore]);
 
   const handleClick = option => {
+    if (gameOver) return;
     generateComputerSelection();
     setuserSelection(option);
   };
 
   const handleKeyDown = e => {
+    if (gameOver) return;
     const option = options.filter(option => option.keyCode === e.keyCode);
     if (!option.length) return;
     handleClick(option[0]);
