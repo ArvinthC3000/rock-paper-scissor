@@ -73,8 +73,8 @@ const App = () => {
       setGameOver(true);
       setShowGameReset(true);
     }
-    if (computerScore >= maxScore) setStatus('You lost!');
-    if (userScore >= maxScore) setStatus('You Won!');
+    if (computerScore >= maxScore) setStatus('You lost! 😓');
+    if (userScore >= maxScore) setStatus('You Won! 🤩✨');
   }, [computerScore, userScore]);
 
   const handleClick = option => {
