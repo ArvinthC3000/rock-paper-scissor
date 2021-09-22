@@ -101,7 +101,7 @@ const App = () => {
   /* Reset game */
   const gameReset = () => {
     setGameOver(0);
-    setComputerScore([]);
+    setComputerSelection([]);
     setuserSelection([]);
     setStatus(null);
     setComputerScore(0);
