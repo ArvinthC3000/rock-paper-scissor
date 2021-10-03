@@ -36,6 +36,10 @@ const App = () => {
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
 
+    // Clean up  - on unmounting component
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -43,7 +47,7 @@ const App = () => {
   useEffect(() => {
     if (gameOver) return;
     switch (userSelection.name + computerSelection.name) {
-      case 'PaperRock':
+      case 'PaperRock': // use either upper or lower case
       case 'RockScissors':
       case 'ScissorsPaper':
         setStatus('Point for you');
@@ -100,7 +104,7 @@ const App = () => {
 
   /* Reset game */
   const gameReset = () => {
-    setGameOver(0);
+    setGameOver(false); //
     setComputerSelection([]);
     setuserSelection([]);
     setStatus(null);
@@ -172,3 +176,12 @@ const iconStyle = {
 };
 
 export default App;
+
+/*
+  Don't manipulate Really DOM.
+  keep JSX simple by avoiding iterating function like map
+  knowing Caviots of hooks before using it 
+  always use Semantics code
+  avoid string interpolation for inline css
+  avoid inline css
+*/
